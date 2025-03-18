@@ -1,0 +1,46 @@
+import { Request, Response } from "express";
+import { User } from "../types/user"
+import userModel from "../models/user.model";
+
+
+
+/**
+ * Get all users
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {void}
+ */
+const getUsers = (req: Request, res: Response) => {
+    const users = userModel.findAll();
+    if (!users) {
+        res.status(500).json({
+          message: "No users",
+        });
+    }    
+    res.status(200).json(users);
+  };
+/**
+ * Add new User
+ * 
+ * @param {Request<{id: string}>} req
+ * @param {Response} res
+ * @returns {void}
+ */
+const createUser = async ( req:Request<{},{}, Omit<User, "id" | "rate">>, res: Response) => {
+const { username, password } = req.body
+if(!username || !password) {
+    return res.status(400).send("Username and Password are required")
+}
+const user = await userModel.createUser({ username, password })
+if(!user) {
+    res.status(400).send("Username already exists")
+    return
+}
+res.status(201).send(user)
+}
+
+export default {
+getUsers,
+createUser
+}

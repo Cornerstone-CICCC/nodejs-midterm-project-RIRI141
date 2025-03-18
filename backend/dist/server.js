@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const cors_1 = __importDefault(require("cors"));
 const page_routes_1 = __importDefault(require("./routes/page.routes"));
+const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -29,6 +30,7 @@ app.use((0, cookie_session_1.default)({
     maxAge: 24 * 60 * 60 * 1000
 }));
 app.use("/", page_routes_1.default);
+app.use("/", user_routes_1.default);
 app.use((req, res) => {
     res.status(404).send("Page not found");
 });
