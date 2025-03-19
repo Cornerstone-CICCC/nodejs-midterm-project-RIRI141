@@ -2,6 +2,7 @@ import express, { Request, Response } from "express"
 import cookieSession from "cookie-session"
 import cors from "cors"
 import pageRouter from "./routes/page.routes"
+import userRouter from "./routes/user.routes"
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -26,7 +27,9 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000
 }))
 
+
 app.use("/", pageRouter)
+app.use("/", userRouter)
 
 app.use((req:Request, res: Response) => {
     res.status(404).send("Page not found")

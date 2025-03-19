@@ -7,4 +7,5 @@ const express_1 = require("express");
 const page_controller_1 = __importDefault(require("../controllers/page.controller"));
 const pageRouter = (0, express_1.Router)();
 pageRouter.get("/", page_controller_1.default.home);
+pageRouter.get("/signup", page_controller_1.default.signup);
 exports.default = pageRouter;
