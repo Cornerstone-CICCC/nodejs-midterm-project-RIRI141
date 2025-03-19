@@ -38,5 +38,16 @@ class UserModel {
             return user;
         });
     }
+    checkUserPass(username, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = this.users.find(u => u.username === username);
+            if (!user)
+                return false;
+            const isMatched = yield bcrypt_1.default.compare(password, user.password);
+            if (!isMatched)
+                return false;
+            return user;
+        });
+    }
 }
 exports.default = new UserModel;

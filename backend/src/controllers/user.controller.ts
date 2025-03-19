@@ -40,7 +40,38 @@ if(!user) {
 res.status(201).send(user)
 }
 
+/**
+ * Login User 
+ * 
+ * @param {Request<{}, {}, Omit<User, 'id' | "rate">>} req
+ * @param {Response} res
+ * @returns {void}
+ */
+const loginUser = async ( req: Request<{}, {}, Omit<User, 'id' | 'rate'>>, res: Response) => {
+  const { username, password } = req.body
+  if(!username || !password) {
+      res.status(500).json({
+          error: "Username/password is wrong"
+      })
+      return
+  }
+  const user = await userModel.checkUserPass(username, password)
+  if(!user) {
+      res.status(500).json({
+          error: "Login infomation is wrong"
+      })
+      return 
+  }
+  if(req.session) {
+      req.session.isLoggedIn = true
+      req.session.username = user.username
+  }
+  res.status(200).send("You Logged in")
+}
+
+
 export default {
 getUsers,
-createUser
+createUser,
+loginUser
 }

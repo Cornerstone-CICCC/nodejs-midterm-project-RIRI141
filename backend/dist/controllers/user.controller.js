@@ -48,7 +48,36 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     res.status(201).send(user);
 });
+/**
+ * Login User
+ *
+ * @param {Request<{}, {}, Omit<User, 'id' | "rate">>} req
+ * @param {Response} res
+ * @returns {void}
+ */
+const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        res.status(500).json({
+            error: "Username/password is wrong"
+        });
+        return;
+    }
+    const user = yield user_model_1.default.checkUserPass(username, password);
+    if (!user) {
+        res.status(500).json({
+            error: "Login infomation is wrong"
+        });
+        return;
+    }
+    if (req.session) {
+        req.session.isLoggedIn = true;
+        req.session.username = user.username;
+    }
+    res.status(200).send("You Logged in");
+});
 exports.default = {
     getUsers,
-    createUser
+    createUser,
+    loginUser
 };
