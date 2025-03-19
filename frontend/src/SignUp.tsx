@@ -14,6 +14,7 @@ function SignUp () {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ username, password }),
+            credentials: "include",
         });
         if (response.ok) {
             navigate("/login");

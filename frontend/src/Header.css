@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #746eb1;
+  color: white;
+  padding: 0 2rem;
+  nav {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+  }
+  li {
+    list-style: none;
+  }
+  a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+  }
+}
+

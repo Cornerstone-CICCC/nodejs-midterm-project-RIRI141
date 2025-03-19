@@ -14,8 +14,10 @@ function LogIn () {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ username, password }),
+            credentials: "include",
         });
         if (response.ok) {
+            console.log("Log In successful");
             navigate("/");
         } else {
             alert("Log In failed");
