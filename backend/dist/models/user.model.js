@@ -21,6 +21,21 @@ class UserModel {
     findAll() {
         return this.users;
     }
+    editUserById(id, updates) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a, _b;
+            const foundIndex = this.users.findIndex(u => u.id === id);
+            if (foundIndex === -1)
+                return false;
+            let hashedPassword = undefined;
+            if (updates.password) {
+                hashedPassword = yield bcrypt_1.default.hash(updates.password, 12);
+            }
+            const updatedUser = Object.assign(Object.assign({}, this.users[foundIndex]), { username: (_a = updates.username) !== null && _a !== void 0 ? _a : this.users[foundIndex].username, password: hashedPassword ? hashedPassword : this.users[foundIndex].password, favorite: (_b = updates.favorite) !== null && _b !== void 0 ? _b : this.users[foundIndex].favorite });
+            this.users[foundIndex] = updatedUser;
+            return updatedUser;
+        });
+    }
     createUser(newUser) {
         return __awaiter(this, void 0, void 0, function* () {
             const { username, password } = newUser;
@@ -32,6 +47,7 @@ class UserModel {
                 id: (0, uuid_1.v4)(),
                 username,
                 password: hashedPassword,
+                favorite: "Not paticular",
                 rate: 0
             };
             this.users.push(user);

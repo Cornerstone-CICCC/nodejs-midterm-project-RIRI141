@@ -13,4 +13,7 @@ userRouter.post("/signup", (req, res) => {
 userRouter.post("/login", (req, res) => {
     user_controller_1.default.loginUser(req, res);
 });
+userRouter.put("/:id", (req, res) => {
+    user_controller_1.default.editUserById(req, res);
+});
 exports.default = userRouter;

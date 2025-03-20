@@ -8,8 +8,26 @@ class UserModel {
     findAll() {
         return this.users;
     }
+   
+    async editUserById(id: string, updates: Partial<User>) {
+        const foundIndex = this.users.findIndex(u => u.id === id)
+        if(foundIndex === -1) return false
 
-    async createUser(newUser: Omit<User, "id" | "rate">) {
+        let hashedPassword = undefined
+        if (updates.password) {
+            hashedPassword = await bcrypt.hash(updates.password, 12)
+        }
+        const updatedUser: User = {
+            ...this.users[foundIndex],
+            username: updates.username ?? this.users[foundIndex].username,
+            password: hashedPassword ? hashedPassword : this.users[foundIndex].password,
+            favorite: updates.favorite ?? this.users[foundIndex].favorite,
+        }
+        this.users[foundIndex] = updatedUser
+        return updatedUser
+    }
+
+    async createUser(newUser: Omit<User, "id" | "favorite" |"rate">) {
         const { username, password } = newUser;
         const foundIndex = this.users.findIndex(user => user.username === username);
         if(foundIndex !== -1) return false
@@ -18,6 +36,7 @@ class UserModel {
             id: uuidv4(),
             username,
             password: hashedPassword,
+            favorite: "Not paticular",
             rate: 0
         }
         this.users.push(user)

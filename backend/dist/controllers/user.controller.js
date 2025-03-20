@@ -76,8 +76,34 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     res.status(200).send("You Logged in");
 });
+/**
+ * Edit user by ID
+ *
+ * @param {Request<{id: string}, {}, Partial<User>>} req
+ * @param {Response} res
+ * @returns {void}
+ */
+const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { username, password, favorite } = req.body;
+    try {
+        const user = yield user_model_1.default.editUserById(id, { username, password, favorite });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        return res.status(200).json(user);
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "Server error"
+        });
+    }
+});
 exports.default = {
     getUsers,
     createUser,
-    loginUser
+    loginUser,
+    editUserById
 };

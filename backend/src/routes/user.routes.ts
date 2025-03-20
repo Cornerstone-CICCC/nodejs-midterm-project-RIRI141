@@ -11,6 +11,8 @@ userRouter.post("/signup",(req:Request<{}, {}, Omit<User, "id" | "rate">>, res:R
 userRouter.post("/login", (req:Request<{}, {}, Omit<User, 'id' | 'rate'>>, res:Response) => {
     userController.loginUser(req, res)
 })
-
+userRouter.put("/:id", (req: Request<{ id: string }, {}, Partial<User>>, res: Response) => {
+    userController.editUserById(req, res)
+})
 
 export default userRouter
