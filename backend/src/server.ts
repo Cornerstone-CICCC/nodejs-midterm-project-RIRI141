@@ -3,6 +3,7 @@ import cookieSession from "cookie-session"
 import cors from "cors"
 import pageRouter from "./routes/page.routes"
 import userRouter from "./routes/user.routes"
+import quizRouter from "./routes/quiz.route"
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -27,7 +28,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000
 }))
 
-
+app.use("/api", quizRouter)
 app.use("/", pageRouter)
 app.use("/", userRouter)
 
