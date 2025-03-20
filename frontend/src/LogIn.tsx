@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Signup.css";
+import "./Login.css";
 
 function LogIn () {
     const [username, setUsername] = useState("");
@@ -24,29 +26,37 @@ function LogIn () {
         }
     }
     return (
-        <div>
-          <h2>Log In</h2>
+        <div className="loginsignupwholecontainer">
+          <div id="loginImgsection">
+            <p>Continue to fight...</p>
+          </div>
+          <div className="commonsection">
           <form onSubmit={handleLogIn}>
             <label>
-              Username:
+              <p>Username:</p>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                placeholder="Enter your username"
+
               />
             </label>
             <label>
-              Password:
+              <p>Password:</p>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                placeholder="Enter your password"
+
               />
             </label>
             <button type="submit">Sign Up</button>
           </form>
+          </div>
         </div>
       );
 }
