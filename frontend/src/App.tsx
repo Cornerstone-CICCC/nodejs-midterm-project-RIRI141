@@ -6,10 +6,12 @@ import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Profile from "./Profile";
 import Edit from "./Edit";
+import Header from "./Header";
 
 function App() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />

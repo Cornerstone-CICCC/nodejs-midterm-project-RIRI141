@@ -13,13 +13,14 @@ class QuizModel {
     constructor() {
         this.quizzes = [];
     }
-    // async getCategory() {
-    //     const QUIZ_CATEGORY_API = process.env.QUIZ_CATEGORY_API;
-    //     const response = await fetch(`${QUIZ_CATEGORY_API}`);
-    //     const data: QuizResponse = await response.json();
-    //     this.quizzes = data.results;
-    //     return this.quizzes;
-    // }
+    getCategory() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const QUIZ_CATEGORY_API = process.env.QUIZ_CATEGORY_API;
+            const response = yield fetch(`${QUIZ_CATEGORY_API}`);
+            const data = yield response.json();
+            return data.results;
+        });
+    }
     getQuiz(amount, category, difficulty) {
         return __awaiter(this, void 0, void 0, function* () {
             const QUIZ_API = process.env.QUIZ_API;

@@ -13,13 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const quiz_model_1 = __importDefault(require("../models/quiz.model"));
-// const getCategory = async (req: Request, res: Response) => {
-//     const quizCategory = await quizModel.getCategory();
-//     if(!quizCategory) {
-//         res.status(500).json({message: "No quiz category"});
-//     }
-//     res.status(200).json(quizCategory);
-// }
+const getCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const quizCategory = yield quiz_model_1.default.getCategory();
+    if (!quizCategory) {
+        res.status(500).json({ message: "No quiz category" });
+    }
+    res.status(200).json(quizCategory);
+    return;
+});
 const getQuiz = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { amount, category, difficulty } = req.query;
     if (!amount || !category || !difficulty) {
@@ -32,6 +33,6 @@ const getQuiz = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json(quiz);
 });
 exports.default = {
-    // getCategory,
+    getCategory,
     getQuiz,
 };

@@ -8,6 +8,12 @@ class UserModel {
     findAll() {
         return this.users;
     }
+    findById(id: string) {
+        const user = this.users.find(u => u.id === id)
+        if(!user) return null
+        return user
+    }
+
    
     async editUserById(id: string, updates: Partial<User>) {
         const foundIndex = this.users.findIndex(u => u.id === id)

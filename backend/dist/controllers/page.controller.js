@@ -6,7 +6,18 @@ const home = (req, res) => {
 const signup = (req, res) => {
     res.status(200).send("SignupPage");
 };
+const profile = (req, res) => {
+    res.status(200).send("ProfilePage");
+};
+const status = (req, res) => {
+    if (req.session && req.session.isLoggedIn) {
+        return res.json({ isLoggedIn: true, user: req.session.user });
+    }
+    return res.json({ isLoggedIn: false });
+};
 exports.default = {
     home,
-    signup
+    signup,
+    profile,
+    status
 };

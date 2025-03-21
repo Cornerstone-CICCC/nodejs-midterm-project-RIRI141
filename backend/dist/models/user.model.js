@@ -21,6 +21,12 @@ class UserModel {
     findAll() {
         return this.users;
     }
+    findById(id) {
+        const user = this.users.find(u => u.id === id);
+        if (!user)
+            return null;
+        return user;
+    }
     editUserById(id, updates) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b;
