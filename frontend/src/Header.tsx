@@ -53,7 +53,7 @@ function Header() {
                   <a href="/profile">Profile</a>
                 </li>
                 <li>
-                  <a href="/quiz">Quiz</a>
+                  <a href="/quizselect">Quiz</a>
                 </li>
                 <li>
                   <button onClick={handleLogOut}>Log Out</button>

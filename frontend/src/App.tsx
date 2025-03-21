@@ -7,6 +7,9 @@ import LogIn from "./LogIn";
 import Profile from "./Profile";
 import Edit from "./Edit";
 import Header from "./Header";
+import QuizSelect from "./Quizselect";
+import Quiz from "./Quiz";
+import Result from "./Result";
 
 function App() {
   return (
@@ -18,7 +21,9 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit/:id" element={<Edit />} />
-
+        <Route path="/quizselect" element={<QuizSelect />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/result" element={<Result />} />
       </Routes>
     </Router>
   );
