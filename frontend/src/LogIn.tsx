@@ -20,7 +20,7 @@ function LogIn () {
         });
         if (response.ok) {
             console.log("Log In successful");
-            navigate("/");
+            navigate("/profile");
         } else {
             alert("Log In failed");
         }
@@ -54,7 +54,7 @@ function LogIn () {
 
               />
             </label>
-            <button type="submit">Sign Up</button>
+            <button type="submit">Log In</button>
           </form>
           </div>
         </div>
