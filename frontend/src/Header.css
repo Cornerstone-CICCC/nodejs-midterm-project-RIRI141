@@ -6,16 +6,22 @@
   padding: 0 2rem;
   nav {
     margin-left: auto;
+    /* display: flex; */
+    /* gap: 2rem; */
+  }
+  ul {
     display: flex;
     gap: 2rem;
   }
   li {
     list-style: none;
+    margin:auto 0;
   }
   a {
     font-size: 1.5rem;
     text-decoration: none;
     color: white;
   }
+  
 }
 

@@ -68,7 +68,16 @@ const loginUser = async ( req: Request<{}, {}, Omit<User, 'id' | 'rate'>>, res: 
   }
   res.status(200).send("You Logged in")
 }
-
+const getUserById = (req: Request<{ id: string }>, res: Response) => {
+    const { id } = req.params;
+    const user = userModel.findById(id);
+    if (!user) {
+      res.status(404).send("User not found");
+      return
+    }
+    res.status(200).json(user);
+  };
+  
 /**
  * Edit user by ID
  *
@@ -94,10 +103,27 @@ const editUserById = async (req: Request<{ id: string }, {}, Partial<User>>, res
     }
 };
 
+/**
+ * Logouted user
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {void} Redirect to signup
+ */
+const logoutUser = (req: Request, res: Response) => {
+    req.session = null;
+    res.status(200).json({
+      content: "Session cookie cleared!",
+    });
+  };
+
+
 
 export default {
 getUsers,
+getUserById,
 createUser,
 loginUser,
-editUserById
+editUserById,
+logoutUser
 }

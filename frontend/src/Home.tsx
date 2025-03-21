@@ -1,10 +1,28 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./Home.css";
 import brain from "../src/imgs/IconBrain.png";
 import book from "../src/imgs/IconBook.png";
 
 function Home() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/status", {
+          credentials: "include",
+        });
+        const data = await res.json();
+        setIsLoggedIn(data.isLoggedIn);
+      } catch (error) {
+        console.error("Failed to check login status:", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
 
   return (
     <>
@@ -16,23 +34,30 @@ function Home() {
             <br />
             Learn as if you were to live forever.
           </p>
-          <button onClick={() => navigate("/signup")}>Sign Up</button>
-          <button onClick={() => navigate("/login")}>Log In</button>
+          {isLoggedIn ? (
+            <>
+              <button onClick={() => navigate("/profile")}>Profile</button>
+              <button onClick={() => navigate("/quiz")}>Quiz</button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => navigate("/signup")}>Sign Up</button>
+              <button onClick={() => navigate("/login")}>Log In</button>
+            </>
+          )}
         </div>
         <div className="homeimg">
-        {/* Backgrond Img */}
+        {/* Background Img */}
         </div>
       </div>
       <div className="herosection2">
         <div>
-          <img id="brain"src={brain} alt="" />
-          <p>Test your knowledge<br/>
-          what you've learned before</p>
+          <img id="brain" src={brain} alt="" />
+          <p>Test your knowledge<br/>what you've learned before</p>
         </div>
         <div>
-          <img id="book"src={book} alt="" />
-          <p>Make your <br/>
-          original QUIZ</p>
+          <img id="book" src={book} alt="" />
+          <p>Make your <br/>original QUIZ</p>
         </div>
       </div>
     </>
