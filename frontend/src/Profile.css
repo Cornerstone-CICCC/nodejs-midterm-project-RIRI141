@@ -1,11 +1,8 @@
 .userinfosection {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     margin:1rem 2rem;
-    width:50%;
-    border: black 2px solid;
-    border-radius: 20px;
+    /* border: black 2px solid; */
+    border-radius: 15px;
     text-align: center;
     height: 80vh;
     gap:.5rem;
@@ -28,4 +25,19 @@
         border-radius: 30px;
         cursor: pointer;
     }
+#userinfo{
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    width:60%;
 }
+}
+.imgsection{
+    width: 40%;
+    background-image: url("./imgs/commonimg.png");
+    background-color: #746eb1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom; 
+}
+

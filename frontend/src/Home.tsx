@@ -47,16 +47,16 @@ function Home() {
           )}
         </div>
         <div className="homeimg">
-        {/* Background Img */}
+        {/* BackgroundIMG */}
         </div>
       </div>
       <div className="herosection2">
         <div>
-          <img id="brain" src={brain} alt="" />
+          <img id="brain" src={brain} alt="brain" />
           <p>Test your knowledge<br/>what you've learned before</p>
         </div>
         <div>
-          <img id="book" src={book} alt="" />
+          <img id="book" src={book} alt="book" />
           <p>Make your <br/>original QUIZ</p>
         </div>
       </div>

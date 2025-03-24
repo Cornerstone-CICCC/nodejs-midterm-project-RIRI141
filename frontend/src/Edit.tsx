@@ -73,10 +73,11 @@ function Edit() {
 
   return (
     <div className="editsection">
+      <div className="editform">
       <h1>Edit Profile</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          <p>Username:</p>
           <input
             type="text"
             name="username"
@@ -86,7 +87,7 @@ function Edit() {
           />
         </label>
         <label>
-          Favorite Genre:
+          <p>Favorite Genre:</p>
           <input
             type="text"
             name="favorite"
@@ -98,6 +99,8 @@ function Edit() {
         <button type="submit">Save</button>
       </form>
       <button onClick={() => navigate("/profile")}>Cancel</button>
+      </div>
+      <div className="imgsection"></div>
     </div>
   );
 }

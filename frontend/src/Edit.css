@@ -1,10 +1,8 @@
 .editsection {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     margin:1rem 2rem;
-    border: black 2px solid;
-    border-radius: 20px;
+    /* border: black 2px solid; */
+    border-radius: 15px;
     text-align: center;
     height: 80vh;
     gap:.5rem;
@@ -26,5 +24,15 @@
         font-size: 1.5rem;
         border-radius: 30px;
         cursor: pointer;
+    }
+}
+.editform{
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    width:60%;
+    height: 100%;
+    input {
+        margin: 0 auto;
     }
 }

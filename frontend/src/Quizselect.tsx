@@ -24,6 +24,7 @@ function QuizSelect() {
       <label>Category:</label>
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="9">General knowledge</option>
+        <option value="27">Animal</option>
         <option value="10">Entertainment: Book</option>
         <option value="31">Japanese Manga</option>
         <option value="11">Movie</option>

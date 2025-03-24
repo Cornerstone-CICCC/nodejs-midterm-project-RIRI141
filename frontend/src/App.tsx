@@ -10,6 +10,7 @@ import Header from "./Header";
 import QuizSelect from "./Quizselect";
 import Quiz from "./Quiz";
 import Result from "./Result";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/result" element={<Result />} />
       </Routes>
+      <Footer/>
     </Router>
+  
   );
 }
 

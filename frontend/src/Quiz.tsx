@@ -15,6 +15,7 @@ const Quiz = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [score, setScore] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]); // 🔥 追加
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -40,18 +41,25 @@ const Quiz = () => {
 
   const handleAnswer = (answer: string) => {
     setSelectedAnswer(answer);
+    setUserAnswers([...userAnswers, answer]); // 🔥 ユーザーの回答を保存
     if (answer === questions[currentIndex].correct_answer) {
       setScore(score + 1);
     }
   };
-
 
   const nextQuestion = () => {
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);
       setSelectedAnswer(null);
     } else {
-      navigate("/result", { state: { score, total: questions.length } });
+      navigate("/result", { 
+        state: { 
+          score, 
+          total: questions.length, 
+          questions,  // 🔥 クイズデータを渡す
+          userAnswers  // 🔥 ユーザーの回答を渡す
+        } 
+      });
     }
   };
 
@@ -78,9 +86,9 @@ const Quiz = () => {
           <button
             key={index}
             onClick={() => {
-                handleAnswer(choice);
+              handleAnswer(choice);
             }}
-            id = {`choice${index + 1}`}
+            id={`choice${index + 1}`}
             className={`${
               selectedAnswer === choice
                 ? choice === currentQuestion.correct_answer
@@ -93,7 +101,7 @@ const Quiz = () => {
           </button>
         ))}
       </div>
-      <button id="next"onClick={nextQuestion}>Next</button>
+      <button id="next" onClick={nextQuestion}>Next</button>
     </div>
   );
 };
