@@ -57,10 +57,10 @@ function Profile() {
                 UserName:
                 <br /> {userData[0].username}
               </p>
-              <p>
+              {/* <p>
                 Correct Answer Rate:
                 <br /> {userData[0].rate}%
-              </p>
+              </p> */}
               <p>
                 Favorite Genre:
                 <br /> {getGenreName(userData[0].favorite)} 

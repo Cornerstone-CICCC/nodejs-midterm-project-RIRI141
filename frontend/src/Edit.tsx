@@ -5,11 +5,20 @@ import "./Edit.css";
 function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const [favorite, setFavorite] = useState("");
   const [formData, setFormData] = useState<{
     username: string;
     favorite: string;
   } | null>(null);
+
+  const genreMapping: { [key: string]: string } = {
+    "9": "General knowledge",
+    "27": "Animal",
+    "10": "Entertainment: Book",
+    "31": "Japanese Manga",
+    "11": "Movie",
+    "12": "Music",
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -25,7 +34,7 @@ function Edit() {
         const data = await res.json();
         setFormData({
           username: data.username,
-          favorite: data.favorite,
+          favorite: data.favorite, 
         });
       } catch (error) {
         console.error(error);
@@ -91,20 +100,19 @@ function Edit() {
             <select
               name="favorite"
               value={formData.favorite}
-              onChange={handleChange} 
+              onChange={handleChange}
             >
-              <option value="General knowledge">General knowledge</option>
-              <option value="Animal">Animal</option>
-              <option value="Entertainment: Book">Entertainment: Book</option>
-              <option value="Japanese Manga">Japanese Manga</option>
-              <option value="Movie">Movie</option>
-              <option value="Music">Music</option>
+              {Object.entries(genreMapping).map(([id, genre]) => (
+                <option key={id} value={id}>
+                  {genre}
+                </option>
+              ))}
             </select>
           </label>
           <button type="submit">Save</button>
           <button onClick={() => navigate("/profile")}>Cancel</button>
         </form>
-      
+     
       </div>
       <div className="imgsection"></div>
     </div>
