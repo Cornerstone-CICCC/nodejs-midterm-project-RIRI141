@@ -49,9 +49,7 @@
     border-radius: 30px;
     cursor: pointer;
   }
-}
-
-  
+   
   form {
     margin: 2rem 0;
     display: flex;
@@ -59,6 +57,9 @@
     gap: 3rem; 
     /* height: 100%; */
   }
+}
+
+ 
   
  input {
     display: block;
@@ -70,5 +71,15 @@
  ::placeholder{
     color: #e3a635;
  }
+
+ @media (max-width: 768px) {
+
+  .commonsection {  
+  button {
+   margin: 0 auto;
+  }
+}
+
+}
  
   

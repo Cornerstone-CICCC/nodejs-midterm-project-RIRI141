@@ -17,3 +17,10 @@
       font-size: 2rem;
   }
 }
+@media (max-width: 768px) {
+
+  #loginImgsection{
+    background-position: center center; 
+  }
+}
+

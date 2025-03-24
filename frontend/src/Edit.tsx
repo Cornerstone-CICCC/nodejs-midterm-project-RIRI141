@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./Edit.css"
+import "./Edit.css";
 
 function Edit() {
   const { id } = useParams();
@@ -25,7 +25,7 @@ function Edit() {
         const data = await res.json();
         setFormData({
           username: data.username,
-          favorite: data.favorite, 
+          favorite: data.favorite,
         });
       } catch (error) {
         console.error(error);
@@ -35,7 +35,7 @@ function Edit() {
     fetchUserData();
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => {
       if (!prev) return prev;
@@ -74,31 +74,37 @@ function Edit() {
   return (
     <div className="editsection">
       <div className="editform">
-      <h1>Edit Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username:</p>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          <p>Favorite Genre:</p>
-          <input
-            type="text"
-            name="favorite"
-            value={formData.favorite}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit">Save</button>
-      </form>
-      <button onClick={() => navigate("/profile")}>Cancel</button>
+        <h1>Edit Profile</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Username:</p>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            <p>Favorite Genre:</p>
+            <select
+              name="favorite"
+              value={formData.favorite}
+              onChange={handleChange} 
+            >
+              <option value="General knowledge">General knowledge</option>
+              <option value="Animal">Animal</option>
+              <option value="Entertainment: Book">Entertainment: Book</option>
+              <option value="Japanese Manga">Japanese Manga</option>
+              <option value="Movie">Movie</option>
+              <option value="Music">Music</option>
+            </select>
+          </label>
+          <button type="submit">Save</button>
+          <button onClick={() => navigate("/profile")}>Cancel</button>
+        </form>
+      
       </div>
       <div className="imgsection"></div>
     </div>

@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
+const genreMapping: { [key: string]: string } = {
+  "9": "General knowledge",
+  "27": "Animal",
+  "10": "Entertainment: Book",
+  "31": "Japanese Manga",
+  "11": "Movie",
+  "12": "Music",
+};
+
 function Profile() {
   const navigate = useNavigate();
   const toEdit = () => {
@@ -32,6 +41,11 @@ function Profile() {
     };
     fetchdata();
   }, []);
+
+  const getGenreName = (id: string) => {
+    return genreMapping[id] || "Unknown Genre"; 
+  };
+
   return (
     <>
       <div className="userinfosection">
@@ -49,7 +63,7 @@ function Profile() {
               </p>
               <p>
                 Favorite Genre:
-                <br /> {userData[0].favorite}
+                <br /> {getGenreName(userData[0].favorite)} 
               </p>
             </>
           ) : (
