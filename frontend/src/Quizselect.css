@@ -1,0 +1,39 @@
+.quizselectsection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin:1rem 2rem;
+    border: black 2px solid;
+    border-radius: 20px;
+    text-align: center;
+    height: 80vh;
+    gap:.5rem;
+    box-shadow: 20px 20px 4px gray;
+    h1{
+        margin:0;
+    }
+    select {
+        width: 60%;
+        padding: 1rem 1rem;
+        font-size: 1.5rem;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: #746eb1 solid 2px;
+    }
+    label {
+        font-size: 1.5rem;
+        margin:0;
+
+    }
+    button {
+        margin:0 auto;
+        background-color: #e3a635;
+        color: white;
+        border: none;
+        width: 60%;
+        padding: 1rem 1rem;
+        font-size: 1.5rem;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+}

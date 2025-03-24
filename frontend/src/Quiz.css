@@ -1,0 +1,98 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+    border: black 2px solid;
+    border-radius: 20px;
+    text-align: center;
+    height: auto;
+    width: 60vw;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-shadow: 20px 20px 4px gray;
+}
+
+.quiz-container button {
+    margin: 0 auto;
+    background-color: #e3a635;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.quiz-container h1,
+.quiz-container p {
+    margin: 0;
+}
+
+/* 選択肢エリア */
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* 選択肢ボタン */
+button.choiced {
+    background-color: #746eb1;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 次へボタン */
+button#next {
+    background-color: #e3a635;
+    color: white;
+    border: none;
+    width: 60%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* 📱 レスポンシブ対応 */
+@media (max-width: 1024px) { /* タブレット向け */
+    .quiz-container {
+        width: 80vw;
+        padding: 1rem;
+    }
+    button {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) { /* スマホ向け */
+    .quiz-container {
+        width: 90vw;
+        padding: 0.8rem;
+    }
+    .choices {
+        grid-template-columns: 1fr; /* 選択肢を1列に */
+        gap: 8px;
+    }
+    button {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+    button#next {
+        width: 80%;
+    }
+}
